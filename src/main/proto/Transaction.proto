@@ -40,7 +40,6 @@ message QueryResultItem {
     ERROR = 2;
   }
   Status status = 7;
-  string refundTransacId = 8;
 }
 
 message PaymentRequest {
