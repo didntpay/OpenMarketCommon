@@ -49,6 +49,7 @@ message QueryResultItem {
   enum Type {
     TRANSFER = 0;
     PAY = 1;
+    REFUND = 2;
   }
   Type type = 1;
   string transactionId = 2;
@@ -65,10 +66,9 @@ message PaymentRequest {
     PAY = 1;
   }
   Type type = 1;
-  string payerId = 2;
-  string recipientId = 3;
-  MoneyAmount moneyAmount = 4;
-  string note = 5;
+  string recipientId = 2;
+  MoneyAmount moneyAmount = 3;
+  string note = 4;
 }
 
 // Response message with the greetings
