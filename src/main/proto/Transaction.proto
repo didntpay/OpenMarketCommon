@@ -10,6 +10,25 @@ service Transaction {
   rpc processQuery (QueryRequest) returns (QueryResult) {}
 }
 
+enum Status {
+  PENDING = 0;
+  COMPLETED = 1;
+  ERROR = 2;
+}
+
+enum ErrorCategory {
+  INSUFFICIENT_BALANCE = 0;
+}
+
+message Error {
+  ErrorCategory category = 1;
+}
+
+message MoneyAmount {
+  string currencyId = 1;
+  double amount = 2;
+}
+
 message QueryRequest {
   enum QueryType {
     TRANSACTION_ID = 0;
@@ -34,11 +53,6 @@ message QueryResultItem {
   string createdAt = 4;
   string payerId = 5;
   string recipientId = 6;
-  enum Status {
-    PENDING = 0;
-    COMPLETED = 1;
-    ERROR = 2;
-  }
   Status status = 7;
 }
 
@@ -54,12 +68,27 @@ message PaymentRequest {
   string note = 5;
 }
 
-message MoneyAmount {
-  string currencyId = 1;
-  double amount = 2;
-}
-
 // Response message with the greetings
 message PaymentResult {
   string transactionId = 1;
+}
+
+message RefundRequest {
+  string transactionId = 1;
+  string reason = 2;
+}
+
+message RefundResult {
+  Error error = 1;
+  PaymentRefund refund = 2;
+}
+
+message PaymentRefund {
+  string refundId = 1;
+  string transactionId = 2;
+  MoneyAmount moneyAmount = 3;
+  string createdAt = 4;
+  string reason = 5;
+  Status status = 6;
+  string updatedAt = 7;
 }
