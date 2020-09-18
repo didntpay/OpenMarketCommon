@@ -14,6 +14,8 @@ enum Status {
   PENDING = 0;
   COMPLETED = 1;
   ERROR = 2;
+  REFUND_STARTED = 3;
+  REFUNDED = 4;
 }
 
 enum ErrorCategory {
