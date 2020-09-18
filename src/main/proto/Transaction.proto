@@ -8,6 +8,7 @@ package transaction;
 service Transaction {
   rpc processPayment (PaymentRequest) returns (PaymentResult) {}
   rpc processQuery (QueryRequest) returns (QueryResult) {}
+  rpc processRefund (RefundRequest) returns (RefundResult) {}
 }
 
 enum Status {
