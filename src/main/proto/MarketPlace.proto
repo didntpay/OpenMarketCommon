@@ -1,5 +1,8 @@
 syntax = "proto3";
+option java_outer_classname = "MarketPlaceProto";
+option java_package = "io.openmarket.marketplace.grpc";
 
+package marketplace;
 message GetItemsRequest {
   string itemId = 1;
 }
@@ -12,4 +15,46 @@ message GetItemsResult {
     GET_ITEM_FAILED = 2;
     GET_ITEM_INVALID = 3;
   }
+  Status status = 2;
+}
+
+message AddItemRequest {
+  string itemName = 1;
+  int32  itemCount = 2;
+  int32  itemPrice = 3;
+  string ownerId = 4;
+}
+
+message AddItemResult {
+  string itemName = 1;
+}
+
+message GetOrgItemsRequest{
+  string orgId = 1;
+  enum GetItemsType {
+    ALL = 0;
+    LIMITED = 1;
+  }
+
+  GetItemsType requestType = 2;
+}
+
+message GetOrgItemsResult{
+  repeated string itemIds = 1;
+}
+
+message GetSimilarItemsRequest {
+  string itemId = 1;
+  string itemName = 2;
+}
+
+message GetSimilarItemsResult {
+  repeated string itemIds = 1;
+}
+
+service MarketPlace{
+  rpc handleGetItems(GetItemsRequest) returns (GetItemsResult) {}
+  rpc handleAddItems(AddItemRequest) returns (AddItemResult) {}
+  rpc handleGetOrgItems(GetOrgItemsRequest) returns (GetOrgItemsResult) {}
+  rpc handleGetSimilarItxems(GetSimilarItemsRequest) returns (GetSimilarItemsResult) {}
 }

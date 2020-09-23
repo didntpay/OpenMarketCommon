@@ -1,8 +1,6 @@
 package io.openmarket.config;
 
-import io.openmarket.event.grpc.EventProto;
-
-public final class GlobalConfig {
+public final class GlobalConfig{
     private GlobalConfig() {}
 
     /**
