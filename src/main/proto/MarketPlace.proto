@@ -1,0 +1,15 @@
+syntax = "proto3";
+
+message GetItemsRequest {
+  string itemId = 1;
+}
+
+message GetItemsResult {
+  repeated string itemIds = 1;
+  enum Status{
+    GET_ITEM_SUCCESS = 0;
+    GET_ITEM_EMPTY = 1;
+    GET_ITEM_FAILED = 2;
+    GET_ITEM_INVALID = 3;
+  }
+}
