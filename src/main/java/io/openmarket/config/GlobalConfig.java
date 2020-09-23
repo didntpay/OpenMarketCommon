@@ -1,5 +1,7 @@
 package io.openmarket.config;
 
+import io.openmarket.event.grpc.EventProto;
+
 public final class GlobalConfig {
     private GlobalConfig() {}
 
@@ -12,5 +14,5 @@ public final class GlobalConfig {
     /**
      * The attribute name for authentication token.
      */
-    public static final String ATTR_AUTHENTICATION_TOKEN = "AuthToken";
+    public static final String ATTR_AUTHENTICATION_TOKEN = "auth";
 }
