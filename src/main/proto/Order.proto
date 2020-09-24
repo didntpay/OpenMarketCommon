@@ -1,0 +1,37 @@
+syntax = "proto3";
+
+service Order {
+  rpc getOrdersByUserId (getOrdersByUserIdRequest) returns (getOrdersByUserIdResponse) {}
+
+}
+
+message getOrdersByUserIdRequest {
+  string userId = 1;
+}
+
+message getOrdersByUserIdResponse {
+  repeated OrderMetaData orders = 1;
+}
+
+message OrderMetaData {
+  string orderId = 1;
+  string buyer = 2;
+  string seller = 3;
+  string delivery_method = 4;
+  string tracking_number = 5;
+  string payment_method = 6;
+  string delivery_address = 7;
+  double total = 8;
+  repeated ItemInfo item_summary = 9;
+  string transaction_id = 10;
+  string created_at = 11;
+}
+
+message ItemInfo {
+  string item_id = 1;
+  string item_name = 2;
+  double price = 3;
+  uint32 quantity = 4;
+
+}
+
