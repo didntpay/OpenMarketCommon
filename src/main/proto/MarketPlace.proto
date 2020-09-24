@@ -9,7 +9,7 @@ message ItemGrpc {
   string itemName = 2;
   string itemImageLink = 3;
   string itemDescription = 4;
-  int32 itemPrice = 5;
+  double itemPrice = 5;
   int32 itemStock = 6;
   string belongTo = 7;
 }
@@ -17,6 +17,7 @@ message ItemGrpc {
 message CheckOutRequest{
   repeated ItemGrpc items = 1;
   repeated int32 count = 2;
+  string fromOrg = 3;
 }
 
 message CheckOutResult {
