@@ -4,7 +4,7 @@ option java_package = "io.openmarket.marketplace.grpc";
 
 package marketplace;
 
-message Item {
+message ItemGrpc {
   string itemId = 1;
   string itemName = 2;
   string itemImageLink = 3;
@@ -50,7 +50,7 @@ message GetOrgItemsRequest{
 }
 
 message GetOrgItemsResult{
-  repeated Item items = 1;
+  repeated ItemGrpc items = 1;
 }
 
 message GetSimilarItemsRequest {
