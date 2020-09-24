@@ -14,6 +14,23 @@ message ItemGrpc {
   string belongTo = 7;
 }
 
+message CheckOutRequest{
+  repeated ItemGrpc items = 1;
+  repeated int32 count = 2;
+}
+
+message CheckOutResult {
+  enum Status {
+    SUCCESS = 0;
+    FAIL_PAYMENT_CANNOT_BE_VERIFIED = 1;
+    FAIL_TRANSACTION_TIME_OUT = 2;
+    FAIL_ITEM_OUT_OF_STOCK = 3;
+    SUCESS_WITH_FEW_ITEM_OUT_OF_STOCK = 4;
+  }
+  Status checkoutStatus = 1;
+  repeated ItemGrpc unprocessedItem = 2;
+}
+
 message AddItemRequest {
   string itemName = 1;
   int32  itemCount = 2;
