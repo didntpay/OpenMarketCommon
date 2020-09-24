@@ -11,21 +11,7 @@ message ItemGrpc {
   string itemDescription = 4;
   int32 itemPrice = 5;
   int32 itemStock = 6;
-}
-
-message GetItemsRequest {
-  string itemId = 1;
-}
-
-message GetItemsResult {
-  repeated string itemIds = 1;
-  enum Status{
-    GET_ITEM_SUCCESS = 0;
-    GET_ITEM_EMPTY = 1;
-    GET_ITEM_FAILED = 2;
-    GET_ITEM_INVALID = 3;
-  }
-  Status status = 2;
+  string belongTo = 7;
 }
 
 message AddItemRequest {
@@ -63,7 +49,6 @@ message GetSimilarItemsResult {
 }
 
 service MarketPlace{
-  rpc handleGetItems(GetItemsRequest) returns (GetItemsResult) {}
   rpc handleAddItems(AddItemRequest) returns (AddItemResult) {}
   rpc handleGetOrgItems(GetOrgItemsRequest) returns (GetOrgItemsResult) {}
   rpc handleGetSimilarItxems(GetSimilarItemsRequest) returns (GetSimilarItemsResult) {}
