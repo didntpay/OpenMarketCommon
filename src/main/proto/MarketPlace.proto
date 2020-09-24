@@ -18,6 +18,7 @@ message CheckOutRequest{
   repeated ItemGrpc items = 1;
   repeated int32 count = 2;
   string fromOrg = 3;
+  string currencyId = 4;
 }
 
 message CheckOutResult {
