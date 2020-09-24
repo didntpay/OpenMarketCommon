@@ -3,6 +3,16 @@ option java_outer_classname = "MarketPlaceProto";
 option java_package = "io.openmarket.marketplace.grpc";
 
 package marketplace;
+
+message Item {
+  string itemId = 1;
+  string itemName = 2;
+  string itemImageLink = 3;
+  string itemDescription = 4;
+  int32 itemPrice = 5;
+  int32 itemStock = 6;
+}
+
 message GetItemsRequest {
   string itemId = 1;
 }
@@ -40,7 +50,7 @@ message GetOrgItemsRequest{
 }
 
 message GetOrgItemsResult{
-  repeated string itemIds = 1;
+  repeated Item items = 1;
 }
 
 message GetSimilarItemsRequest {
