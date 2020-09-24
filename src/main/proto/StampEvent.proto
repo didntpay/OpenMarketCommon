@@ -15,9 +15,8 @@ service StampEvent {
 message CreateEventRequest {
   string currency = 1;
   string expiresAt = 2;
-  string createdAt = 3;
-  double rewardAmount = 4;
-  double totalAmount = 5;
+  double rewardAmount = 3;
+  double totalAmount = 4;
 }
 
 message CreateEventResult {
