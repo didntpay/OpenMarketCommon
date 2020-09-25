@@ -12,6 +12,7 @@ message ItemGrpc {
   double itemPrice = 5;
   int32 itemStock = 6;
   string belongTo = 7;
+  string category = 8;
 }
 
 message GetSimilarItemsRequest {
