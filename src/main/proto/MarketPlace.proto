@@ -14,6 +14,16 @@ message ItemGrpc {
   string belongTo = 7;
 }
 
+message GetSimilarItemsRequest {
+  string itemIds = 1;
+  string itemCategory = 2;
+  int32  withCount = 3;
+}
+
+message GetSimilarItemsResult {
+  repeated ItemGrpc items = 1;
+}
+
 message CheckOutRequest{
   repeated ItemGrpc items = 1;
   repeated int32 count = 2;
@@ -56,15 +66,6 @@ message GetOrgItemsRequest{
 
 message GetOrgItemsResult{
   repeated ItemGrpc items = 1;
-}
-
-message GetSimilarItemsRequest {
-  string itemId = 1;
-  string itemName = 2;
-}
-
-message GetSimilarItemsResult {
-  repeated string itemIds = 1;
 }
 
 service MarketPlace{
