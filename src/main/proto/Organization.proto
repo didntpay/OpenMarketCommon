@@ -1,7 +1,6 @@
 syntax = "proto3";
 
-package organization;
-
+option java_package = "io.openmarket.organization.grpc";
 service Organization {
   rpc addOrganization (orgMetadata) returns (orgName) {}
   rpc getOrganization (orgName) returns (orgMetadata){}

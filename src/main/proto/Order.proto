@@ -1,5 +1,5 @@
 syntax = "proto3";
-
+option java_package = "io.openmarket.order.grpc";
 service Order {
   rpc getOrdersByUserId (getOrdersByUserIdRequest) returns (getOrdersByUserIdResponse) {}
 
