@@ -64,7 +64,7 @@ message Event {
 }
 
 enum Error {
-  NONE = 0;
+  NOTHING = 0;
   UNAUTHORIZED = 1;
   INVALID_EVENT_ID = 2;
   ALREADY_REDEEMED = 3;
