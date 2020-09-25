@@ -76,5 +76,5 @@ service MarketPlace{
   rpc handleAddItems(AddItemRequest) returns (AddItemResult) {}
   rpc handleGetOrgItems(GetOrgItemsRequest) returns (GetOrgItemsResult) {}
   rpc handleCheckout(CheckOutRequest) returns (CheckOutResult){}
-  rpc handleGetSimilarItxems(GetSimilarItemsRequest) returns (GetSimilarItemsResult) {}
+  rpc handleGetSimilarItems(GetSimilarItemsRequest) returns (GetSimilarItemsResult) {}
 }
