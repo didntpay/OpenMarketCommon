@@ -18,7 +18,6 @@ message OrderMetaData {
   string buyer = 2;
   string seller = 3;
   string delivery_method = 4;
-  string tracking_number = 5;
   string payment_method = 6;
   string delivery_address = 7;
   double total = 8;
