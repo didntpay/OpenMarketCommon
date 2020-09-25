@@ -13,6 +13,8 @@ message ItemGrpc {
   int32 itemStock = 6;
   string belongTo = 7;
   string category = 8;
+  // for order only
+  int32 itemCount = 9;
 }
 
 message GetSimilarItemsRequest {
@@ -27,9 +29,8 @@ message GetSimilarItemsResult {
 
 message CheckOutRequest{
   repeated ItemGrpc items = 1;
-  repeated int32 count = 2;
-  string fromOrg = 3;
-  string currencyId = 4;
+  string fromOrg = 2;
+  string currencyId = 3;
 }
 
 message CheckOutResult {
@@ -45,14 +46,15 @@ message CheckOutResult {
 }
 
 message AddItemRequest {
-  string itemName = 1;
-  int32  itemCount = 2;
-  int32  itemPrice = 3;
-  string ownerId = 4;
+  ItemGrpc item = 1;
 }
 
 message AddItemResult {
   string itemName = 1;
+  enum Status {
+    SUCCESS = 0;
+    FAILED = 1;
+  }
 }
 
 message GetOrgItemsRequest{
