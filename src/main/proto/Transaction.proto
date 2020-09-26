@@ -45,6 +45,7 @@ message QueryRequest {
   enum QueryType {
     TRANSACTION_ID = 0;
     PAYER_ID = 1;
+    ALL = 2;
   }
   QueryType type = 1;
   string param = 2;
