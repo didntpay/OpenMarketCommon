@@ -9,6 +9,7 @@ service Transaction {
   rpc processPayment (PaymentRequest) returns (PaymentResult) {}
   rpc processQuery (QueryRequest) returns (QueryResult) {}
   rpc processRefund (RefundRequest) returns (RefundResult) {}
+  rpc processGetWallet (GetWalletRequest) returns (GetWalletResult) {}
 }
 
 enum Status {
@@ -25,6 +26,14 @@ enum ErrorCategory {
 
 message Error {
   ErrorCategory category = 1;
+}
+
+message GetWalletResult {
+  map<string, double> currencies = 1;
+}
+
+message GetWalletRequest {
+
 }
 
 message MoneyAmount {
