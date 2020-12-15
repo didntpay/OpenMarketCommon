@@ -10,6 +10,7 @@ service StampEvent {
   rpc deleteEvent (DeleteEventRequest) returns (DeleteEventResult) {}
   rpc redeem (RedeemRequest) returns (RedeemResult) {}
   rpc getEvent (GetEventRequest) returns (GetEventResult) {}
+  rpc getOwnedEvent (GetOwnedEventRequest) returns (GetOwnedEventResult) {}
 }
 
 message CreateEventRequest {
@@ -50,6 +51,17 @@ message GetEventRequest {
 message GetEventResult {
   Error error = 1;
   Event event = 2;
+}
+
+message GetOwnedEventRequest {
+  string exclusiveStartKey = 1;
+  uint32 count = 2;
+}
+
+message GetOwnedEventResult {
+  Error error = 1;
+  string lastEvaluatedKey = 2;
+  repeated Event events = 3;
 }
 
 message Event {
