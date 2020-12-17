@@ -52,6 +52,7 @@ message QueryRequest {
   QueryType type = 1;
   string param = 2;
   string exclusiveStartKey = 3;
+  uint32 maxCount = 4;
 }
 
 message QueryResult {
