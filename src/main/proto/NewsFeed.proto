@@ -1,0 +1,63 @@
+syntax = "proto3";
+option java_outer_classname = "NewsFeedProto";
+option java_package = "io.openmarket.newsfeed.grpc";
+
+package newsfeed;
+
+message ItemGrpc {
+  string itemId = 1;
+  string itemName = 2;
+  string itemImageLink = 3;
+  string itemDescription = 4;
+  double itemPrice = 5;
+  int32 itemStock = 6;
+  string belongTo = 7;
+  string category = 8;
+  // for order only
+  int32 itemCount = 9;
+}
+
+message UserProfile {
+  repeated string tags = 1;
+}
+
+message TopDealsRequests {
+  string category = 1;
+}
+
+message TopDealsResult {
+  repeated ItemGrpc items = 1;
+}
+
+message RecommendOrganizationRequest {
+  repeated string tags = 1;
+  int32 limit = 2;
+}
+
+message RecommendOrganizationResult {
+  repeated string orgID = 1;
+}
+
+message RecommendItemRequest {
+  string category = 1;
+  repeated string itemTags = 2;
+}
+
+message RecommendItemResult {
+  repeated ItemGrpc items = 1;
+}
+
+message RecommendEventsRequest {
+  repeated string tags = 1;
+}
+
+message RecommendEventsResult {
+  repeated string eventID = 1;
+}
+
+service NewsFeed {
+  rpc getTopDeals() returns (TopDealsResult) {};
+  rpc getRecommendItems(RecommendItemRequest) returns (RecommendItemResult);
+  rpc getRecommendedEvents(RecommendEventsRequest) returns (RecommendEventsResult);
+  rpc getRecommendedOrganization(RecommendOrganizationRequest) returns (RecommendOrganizationResult);
+}

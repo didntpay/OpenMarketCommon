@@ -64,7 +64,6 @@ message GetOrgItemsRequest{
     ALL = 0;
     LIMITED = 1;
   }
-
   GetItemsType requestType = 2;
 }
 
