@@ -21,8 +21,9 @@ message UserProfile {
   repeated string tags = 1;
 }
 
-message TopDealsRequests {
+message TopDealsRequest {
   string category = 1;
+  int32 limit = 2;
 }
 
 message TopDealsResult {
