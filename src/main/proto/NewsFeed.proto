@@ -55,8 +55,17 @@ message RecommendEventsResult {
   repeated string eventID = 1;
 }
 
+message GetPosterRequests {
+  int32 limit = 1;
+}
+
+message GetPosterResult {
+  repeated int32 posterID = 1;
+}
+
 service NewsFeed {
-  rpc getTopDeals() returns (TopDealsResult) {};
+  rpc getTopDeals(TopDealsRequests) returns (TopDealsResult) {};
+  rpc getPosters(GetPosterRequests) returns (GetPosterResult) {};
   rpc getRecommendItems(RecommendItemRequest) returns (RecommendItemResult);
   rpc getRecommendedEvents(RecommendEventsRequest) returns (RecommendEventsResult);
   rpc getRecommendedOrganization(RecommendOrganizationRequest) returns (RecommendOrganizationResult);
