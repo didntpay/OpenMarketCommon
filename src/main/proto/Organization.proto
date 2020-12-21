@@ -17,7 +17,7 @@ message orgMetadata {
   string orgOwnerId = 3;
   string orgSlogan = 4;
   string orgPortraitS3Key = 5;
-  string orgCurrencies = 6;
+  string orgCurrency = 6;
   uint32 followerCount = 7;
   repeated string events = 8;
   string orgID = 9;
