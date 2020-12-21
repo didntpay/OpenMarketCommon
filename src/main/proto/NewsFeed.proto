@@ -13,8 +13,8 @@ message ItemGrpc {
   int32 itemStock = 6;
   string belongTo = 7;
   string category = 8;
-  // for order only
-  int32 itemCount = 9;
+
+  int32 purchasedCount = 9;
 }
 
 message UserProfile {
