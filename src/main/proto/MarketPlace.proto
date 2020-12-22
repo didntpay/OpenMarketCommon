@@ -38,7 +38,7 @@ message GetAllOrdersResult {
 }
 
 message CheckOutRequest {
-  repeated CheckOutItem items = 1;
+  map<int32, int32> items = 1;
 }
 
 message CheckOutResult {
@@ -49,11 +49,6 @@ message CheckOutResult {
   }
   CheckOutError error = 1;
   string orderId = 2;
-}
-
-message CheckOutItem {
-  int32 itemId = 1;
-  int32 quantity = 2;
 }
 
 message Order {
