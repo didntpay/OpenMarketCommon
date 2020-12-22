@@ -16,6 +16,7 @@ message OrgUpdateResult {
     NONE = 0;
     CANNOT_FIND_ORG = 1;
     INTERNAL_ERROR = 2;
+    POSTER_ALREADY_EXIST = 3;
   }
 
   UpdateError error = 1;
