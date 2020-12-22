@@ -4,76 +4,70 @@ option java_package = "io.openmarket.marketplace.grpc";
 
 package marketplace;
 
-message ItemGrpc {
-  string itemId = 1;
-  string itemName = 2;
-  string itemImageLink = 3;
-  string itemDescription = 4;
-  double itemPrice = 5;
-  int32 itemStock = 6;
-  string belongTo = 7;
-  string category = 8;
-  // for order only
-  int32 itemCount = 9;
+service MarketPlace{
+  rpc checkout(CheckOutRequest) returns (CheckOutResult) {}
+  rpc getAllOrders(GetAllOrdersRequest) returns (GetAllOrdersResult) {}
 }
 
-message GetSimilarItemsRequest {
-  string itemIds = 1;
-  string itemCategory = 2;
-  int32  withCount = 3;
+message GetAllOrdersRequest {
+  Role role = 1;
+  string exclusiveStartKey = 2;
+  uint32 maxCount = 3;
 }
 
-message GetSimilarItemsResult {
-  repeated ItemGrpc items = 1;
+message GetAllOrdersResult {
+  string lastEvaluatedKey = 1;
+  repeated Order orders = 2;
 }
 
-message CheckOutRequest{
-  repeated ItemGrpc items = 1;
-  string fromOrg = 2;
-  string currencyId = 3;
+message CheckOutRequest {
+  repeated CheckOutItem items = 1;
 }
 
 message CheckOutResult {
-  enum Status {
-    SUCCESS = 0;
-    FAIL_PAYMENT_CANNOT_BE_VERIFIED = 1;
-    FAIL_TRANSACTION_TIME_OUT = 2;
-    FAIL_ITEM_OUT_OF_STOCK = 3;
-    SUCESS_WITH_FEW_ITEM_OUT_OF_STOCK = 4;
-  }
-  Status checkoutStatus = 1;
-  repeated ItemGrpc unprocessedItem = 2;
+  CheckOutError error = 1;
+  string orderId = 2;
 }
 
-message AddItemRequest {
-  ItemGrpc item = 1;
+message CheckOutItem {
+  int32 itemId = 1;
+  int32 quantity = 2;
 }
 
-message AddItemResult {
-  string itemName = 1;
-  enum Status {
-    SUCCESS = 0;
-    FAILED = 1;
-  }
-  Status addStatus = 2;
+message Order {
+  string orderId = 1;
+  string buyerId = 2;
+  string sellerId = 3;
+  string currency = 4;
+  string transactionId = 5;
+  OrderStatus status = 6;
+  double totalAmount = 7;
+  string createdAt = 8;
+  string lastUpdatedAt = 9;
+  repeated OrderedItem items = 10;
 }
 
-message GetOrgItemsRequest{
-  string orgId = 1;
-  enum GetItemsType {
-    ALL = 0;
-    LIMITED = 1;
-  }
-  GetItemsType requestType = 2;
+message OrderedItem {
+  int32 itemId = 1;
+  int32 quantity = 2;
+  string itemName = 3;
+  double itemPrice = 4;
 }
 
-message GetOrgItemsResult{
-  repeated ItemGrpc items = 1;
+enum OrderStatus {
+  PENDING_PAYMENT = 0;
+  PAYMENT_CONFIRMED = 1;
+  PAYMENT_NOT_RECEIVED = 2;
+  CANCELLED = 3;
 }
 
-service MarketPlace{
-  rpc handleAddItems(AddItemRequest) returns (AddItemResult) {}
-  rpc handleGetOrgItems(GetOrgItemsRequest) returns (GetOrgItemsResult) {}
-  rpc handleCheckout(CheckOutRequest) returns (CheckOutResult){}
-  rpc handleGetSimilarItems(GetSimilarItemsRequest) returns (GetSimilarItemsResult) {}
+enum Role {
+  BUYER = 0;
+  SELLER = 1;
+}
+
+enum CheckOutError {
+  NONE = 0;
+  INSUFFICIENT_BALANCE = 1;
+  INTERNAL_SERVICE_ERROR = 2;
 }
