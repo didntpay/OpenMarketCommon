@@ -11,6 +11,16 @@ message orgName {
   string orgName = 1;
 }
 
+message OrgUpdateResult {
+  enum UpdateError {
+    NONE = 0;
+    CANNOT_FIND_ORG = 1;
+    INTERNAL_ERROR = 2;
+  }
+
+  UpdateError error = 1;
+}
+
 message orgMetadata {
   string orgName = 1;
   string orgDescription = 2;
