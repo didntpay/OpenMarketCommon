@@ -4,7 +4,7 @@ option java_package = "io.openmarket.organization.grpc";
 service Organization {
   rpc addOrganization (orgMetadata) returns (orgName) {}
   rpc getOrganization (orgName) returns (orgMetadata){}
-  rpc updateOrganization(orgMetadata) returns (orgName) {}
+  rpc updateOrganization(orgMetadata) returns (OrgUpdateResult) {}
 }
 
 message orgName {
