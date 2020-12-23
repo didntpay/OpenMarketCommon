@@ -7,20 +7,37 @@ service Organization {
   rpc getOrganization (orgName) returns (orgMetadata){}
   rpc updateOrganization(orgMetadata) returns (OrgUpdateResult) {}
   rpc updateFollower(UpdateFollowerRequest) returns (UpdateFollowerResult) {}
+  rpc getFollowers(GetFollowerRequest) returns (GetFollowerResult) {}
+  rpc isUserFollowing(IsUserFollowingRequest) returns (IsUserFollowingResult) {}
+}
+
+message IsUserFollowingRequest {
+  string userId = 1;
+  string orgId = 2;
+}
+
+message IsUserFollowingResult {
+  bool isFollowing = 1;
+}
+
+message GetFollowerRequest {
+  string orgId = 1;
+}
+
+message GetFollowerResult {
+  repeated string userIds = 1;
 }
 
 message UpdateFollowerRequest {
-  repeated string userIds = 1;
+  string userId = 1;
   string orgId = 2;
 }
 
 message UpdateFollowerResult {
-  enum UpdateFollowerError {
-    NONE = 0;
-    CANNOT_FIND_ORG = 1;
-  }
-  UpdateFollowerError error = 1;
+
 }
+
+
 
 
 
@@ -47,7 +64,6 @@ message orgMetadata {
   string orgCurrency = 6;
   uint32 followerCount = 7;
   string orgPosterS3Key = 8;
-  string orgID = 9;
 }
 
 

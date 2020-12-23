@@ -14,6 +14,8 @@ message LoginRequest  {
     string password = 2;
 }
 
+
+
 message LoginResult {
     string cred = 1;
     string username = 2;
@@ -57,7 +59,20 @@ message UpdateResult {
     string newDisplayName = 2;
 }
 
+message GetAllFollowingRequest{
+    string userId = 1;
+}
+
+message GetAllFollowingResult {
+    uint32 followingCount = 1;
+    enum GetAllFollowError {
+        NONE = 0;
+        USER_DOESNOT_EXIST = 1;
+    }
+}
+
 service Account {
     rpc handleLogin(LoginRequest) returns (LoginResult) {}
     rpc handleRegister(RegistrationRequest) returns (RegistrationResult){}
+    rpc handleGetAllFollowing(GetAllFollowingRequest) returns (GetAllFollowingResult) {}
 }
