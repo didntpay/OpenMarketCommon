@@ -1,25 +1,52 @@
 syntax = "proto3";
 
 option java_package = "io.openmarket.organization.grpc";
+
 service Organization {
   rpc addOrganization (orgMetadata) returns (orgName) {}
   rpc getOrganization (orgName) returns (orgMetadata){}
-  rpc updateOrganization(orgMetadata) returns (orgName) {}
+  rpc updateOrganization(orgMetadata) returns (OrgUpdateResult) {}
+  rpc updateFollower(UpdateFollowerRequest) returns (UpdateFollowerResult) {}
 }
+
+message UpdateFollowerRequest {
+  repeated string userIds = 1;
+  string orgId = 2;
+}
+
+message UpdateFollowerResult {
+  enum UpdateFollowerError {
+    NONE = 0;
+    CANNOT_FIND_ORG = 1;
+  }
+  UpdateFollowerError error = 1;
+}
+
+
 
 message orgName {
   string orgName = 1;
+}
+
+message OrgUpdateResult {
+  enum UpdateError {
+    NONE = 0;
+    CANNOT_FIND_ORG = 1;
+    INTERNAL_ERROR = 2;
+    POSTER_ALREADY_EXIST = 3;
+  }
+
+  UpdateError error = 1;
 }
 
 message orgMetadata {
   string orgName = 1;
   string orgDescription = 2;
   string orgOwnerId = 3;
-  string orgSlogan = 4;
   string orgPortraitS3Key = 5;
   string orgCurrency = 6;
   uint32 followerCount = 7;
-  repeated string events = 8;
+  string orgPosterS3Key = 8;
   string orgID = 9;
 }
 
