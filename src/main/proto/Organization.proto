@@ -8,6 +8,15 @@ service Organization {
   rpc updateOrganization(orgMetadata) returns (OrgUpdateResult) {}
   rpc updateFollower(UpdateFollowerRequest) returns (UpdateFollowerResult) {}
   rpc getFollowers(GetFollowerRequest) returns (GetFollowerResult) {}
+  rpc isUserFollowing(IsUserFollowingRequest) returns (IsUserFollowingResult) {}
+}
+
+message IsUserFollowingRequest {
+  string userId = 1;
+}
+
+message IsUserFollowingResult {
+  bool isFollowing = 1;
 }
 
 message GetFollowerRequest {
@@ -19,13 +28,15 @@ message GetFollowerResult {
 }
 
 message UpdateFollowerRequest {
-  string userIds = 1;
+  string userId = 1;
   string orgId = 2;
 }
 
 message UpdateFollowerResult {
 
 }
+
+
 
 
 
