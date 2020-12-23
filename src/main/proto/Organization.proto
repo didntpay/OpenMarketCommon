@@ -13,6 +13,7 @@ service Organization {
 
 message IsUserFollowingRequest {
   string userId = 1;
+  string orgId = 2;
 }
 
 message IsUserFollowingResult {
