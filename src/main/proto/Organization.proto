@@ -10,16 +10,12 @@ service Organization {
 }
 
 message UpdateFollowerRequest {
-  repeated string userIds = 1;
+  string userIds = 1;
   string orgId = 2;
 }
 
 message UpdateFollowerResult {
-  enum UpdateFollowerError {
-    NONE = 0;
-    CANNOT_FIND_ORG = 1;
-  }
-  UpdateFollowerError error = 1;
+
 }
 
 
@@ -47,7 +43,6 @@ message orgMetadata {
   string orgCurrency = 6;
   uint32 followerCount = 7;
   string orgPosterS3Key = 8;
-  string orgID = 9;
 }
 
 
