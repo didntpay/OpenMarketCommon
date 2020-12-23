@@ -7,6 +7,15 @@ service Organization {
   rpc getOrganization (orgName) returns (orgMetadata){}
   rpc updateOrganization(orgMetadata) returns (OrgUpdateResult) {}
   rpc updateFollower(UpdateFollowerRequest) returns (UpdateFollowerResult) {}
+  rpc getFollowers(GetFollowerRequest) returns (GetFollowerResult) {}
+}
+
+message GetFollowerRequest {
+  string orgId = 1;
+}
+
+message GetFollowerResult {
+  repeated string userIds = 1;
 }
 
 message UpdateFollowerRequest {
