@@ -42,18 +42,9 @@ message CheckOutRequest {
 }
 
 message CheckOutResult {
-  enum CheckOutError {
-    NONE = 0;
-    INTERNAL_SERVICE_ERROR = 1;
-  }
-  CheckOutError error = 1;
+  Error error = 1;
   repeated Order successOrders = 2;
   map<int32, FailedCheckOutCause> failedItems = 3;
-}
-
-enum FailedCheckOutCause {
-  OUT_OF_STOCK = 0;
-  ITEM_DOES_NOT_EXIST = 1;
 }
 
 message Order {
@@ -87,6 +78,11 @@ message MarketPlaceItem {
   string category = 8;
 }
 
+enum FailedCheckOutCause {
+  OUT_OF_STOCK = 0;
+  ITEM_DOES_NOT_EXIST = 1;
+}
+
 enum OrderStatus {
   PENDING_PAYMENT = 0;
   PAYMENT_CONFIRMED = 1;
@@ -97,4 +93,9 @@ enum OrderStatus {
 enum Role {
   BUYER = 0;
   SELLER = 1;
+}
+
+enum Error {
+  NONE = 0;
+  INTERNAL_SERVICE_ERROR = 1;
 }
