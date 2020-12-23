@@ -42,13 +42,13 @@ message CheckOutRequest {
 }
 
 message CheckOutResult {
-  enum CheckOutError {
-    NONE = 0;
-    INSUFFICIENT_BALANCE = 1;
-    INTERNAL_SERVICE_ERROR = 2;
-  }
-  CheckOutError error = 1;
-  string orderId = 2;
+  repeated Order successOrders = 1;
+  map<int32, FailedCheckOutCause> failedItems = 2;
+}
+
+enum FailedCheckOutCause {
+  OUT_OF_STOCK = 0;
+  ITEM_DOES_NOT_EXIST = 1;
 }
 
 message Order {
