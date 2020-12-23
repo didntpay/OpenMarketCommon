@@ -42,8 +42,13 @@ message CheckOutRequest {
 }
 
 message CheckOutResult {
-  repeated Order successOrders = 1;
-  map<int32, FailedCheckOutCause> failedItems = 2;
+  enum CheckOutError {
+    NONE = 0;
+    INTERNAL_SERVICE_ERROR = 1;
+  }
+  CheckOutError error = 1;
+  repeated Order successOrders = 2;
+  map<int32, FailedCheckOutCause> failedItems = 3;
 }
 
 enum FailedCheckOutCause {
