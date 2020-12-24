@@ -96,9 +96,15 @@ message PaymentResult {
 message RefundRequest {
   string transactionId = 1;
   string reason = 2;
+  double amount = 3;
 }
 
 message RefundResult {
+  enum RefundError {
+    INVALID_AMOUNT = 0;
+    UNAUTHORIZED = 1;
+    TRANSACTION_DOES_NOT_EXIST = 2;
+  }
   Error error = 1;
   PaymentRefund refund = 2;
 }
