@@ -7,6 +7,7 @@ message RegistrationRequest {
     string username = 1;
     string password = 2;
     string displayName = 3;
+    string portraitS3Key = 4;
 }
 
 message LoginRequest  {
