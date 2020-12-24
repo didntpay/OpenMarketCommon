@@ -82,6 +82,7 @@ enum FailedCheckOutCause {
   OUT_OF_STOCK = 0;
   ITEM_DOES_NOT_EXIST = 1;
   INSUFFICIENT_BALANCE = 2;
+  ILLEGAL_ARGUMENT = 3;
 }
 
 enum OrderStatus {
