@@ -7,6 +7,7 @@ message RegistrationRequest {
     string username = 1;
     string password = 2;
     string displayName = 3;
+    string portraitS3Key = 4;
 }
 
 message LoginRequest  {
@@ -47,6 +48,7 @@ message UpdateRequest {
     string newDisplayName = 3;
     string newPassword = 4;
     repeated string newTags = 5;
+    string newFollow = 6;
 }
 
 message UpdateResult {
@@ -71,8 +73,31 @@ message GetAllFollowingResult {
     }
 }
 
+message User {
+    string userName = 1;
+    repeated string following = 2;
+    string portraitKey = 3;
+    string displayName = 4;
+
+}
+
+message GetUserRequest {
+    string userId = 1;
+}
+
+message GetUserResult {
+    uint32 followingCount = 1;
+    enum GetAllFollowError {
+        NONE = 0;
+        USER_DOESNOT_EXIST = 1;
+    }
+    User user = 2;
+    GetAllFollowError error = 3;
+}
+
 service Account {
     rpc handleLogin(LoginRequest) returns (LoginResult) {}
     rpc handleRegister(RegistrationRequest) returns (RegistrationResult){}
     rpc handleGetAllFollowing(GetAllFollowingRequest) returns (GetAllFollowingResult) {}
+    rpc getUser(GetUserRequest) returns (GetUserResult) {}
 }
