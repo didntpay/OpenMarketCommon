@@ -45,6 +45,7 @@ message CheckOutResult {
   Error error = 1;
   repeated Order successOrders = 2;
   map<int32, FailedCheckOutCause> failedItems = 3;
+  repeated Order actionRequiredOrders = 4;
 }
 
 message Order {
