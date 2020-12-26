@@ -13,7 +13,7 @@ service MarketPlace{
 message GetOrgItemsRequest{
   string orgId = 1;
   string exclusiveStartKey = 2;
-  uint32 maxCount = 3;
+  int32 maxCount = 3;
 }
 
 message GetOrgItemsResult{
@@ -29,7 +29,7 @@ message GetOrgItemsResult{
 message GetAllOrdersRequest {
   Role role = 1;
   string exclusiveStartKey = 2;
-  uint32 maxCount = 3;
+  int32 maxCount = 3;
 }
 
 message GetAllOrdersResult {
