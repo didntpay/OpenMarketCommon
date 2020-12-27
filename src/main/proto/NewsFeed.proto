@@ -5,7 +5,7 @@ option java_package = "io.openmarket.newsfeed.grpc";
 package newsfeed;
 
 message ItemGrpc {
-  string itemId = 1;
+  int32 itemId = 1;
   string itemName = 2;
   string itemImageLink = 3;
   string itemDescription = 4;
