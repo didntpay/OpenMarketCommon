@@ -3,17 +3,36 @@ syntax = "proto3";
 option java_package = "io.openmarket.organization.grpc";
 
 service Organization {
-  rpc addOrganization (orgMetadata) returns (orgName) {}
-  rpc getOrganization (orgName) returns (orgMetadata){}
-  rpc updateOrganization(orgMetadata) returns (OrgUpdateResult) {}
+  rpc addOrganization (OrgMetadata) returns (AddOrgResult) {}
+  rpc getOrganization (GetOrgRequest) returns (GetOrgResult) {}
+  rpc updateOrganization(OrgMetadata) returns (OrgUpdateResult) {}
   rpc updateFollower(UpdateFollowerRequest) returns (UpdateFollowerResult) {}
   rpc getFollowers(GetFollowerRequest) returns (GetFollowerResult) {}
   rpc isUserFollowing(IsUserFollowingRequest) returns (IsUserFollowingResult) {}
 }
 
+enum Error {
+  NONE = 0;
+  ORG_DOES_NOT_EXIST = 1;
+}
+
+message AddOrgResult {
+  enum AddOrgError {
+    NONE = 0;
+    ALREADY_EXIST = 1;
+    INVALID_ORG_PARAMETER = 2;
+  }
+  AddOrgError error = 1;
+}
+
 message IsUserFollowingRequest {
   string userId = 1;
   string orgId = 2;
+}
+
+message GetOrgResult {
+  Error error = 1;
+  OrgMetadata organization = 2;
 }
 
 message IsUserFollowingResult {
@@ -34,14 +53,9 @@ message UpdateFollowerRequest {
 }
 
 message UpdateFollowerResult {
-
 }
 
-
-
-
-
-message orgName {
+message GetOrgRequest {
   string orgName = 1;
 }
 
@@ -56,7 +70,7 @@ message OrgUpdateResult {
   UpdateError error = 1;
 }
 
-message orgMetadata {
+message OrgMetadata {
   string orgName = 1;
   string orgDescription = 2;
   string orgOwnerId = 3;
@@ -65,5 +79,3 @@ message orgMetadata {
   uint32 followerCount = 7;
   string orgPosterS3Key = 8;
 }
-
-
