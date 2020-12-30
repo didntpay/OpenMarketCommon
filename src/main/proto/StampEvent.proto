@@ -10,11 +10,16 @@ service StampEvent {
   rpc deleteEvent (DeleteEventRequest) returns (DeleteEventResult) {}
   rpc redeem (RedeemRequest) returns (RedeemResult) {}
   rpc getEvent (GetEventRequest) returns (GetEventResult) {}
-  rpc getOwnedEvent (GetOwnedEventRequest) returns (GetOwnedEventResult) {}
-  rpc getEventByOwner(GetEventByOwnerRequest) returns (GetOwnedEventResult) {}
+//  rpc getOwnedEvent (GetOwnedEventRequest) returns (GetOwnedEventResult) {}
+  rpc getEventList(GetEventListRequest) returns (GetEventListResult) {}
 }
 
-message GetEventByOwnerRequest {
+message GetEventListResult {
+  string lastEvaluatedKey = 2;
+  repeated Event events = 3;
+}
+
+message GetEventListRequest {
   string ownerID = 1;
 }
 
@@ -59,16 +64,16 @@ message GetEventResult {
   Event event = 2;
 }
 
-message GetOwnedEventRequest {
-  string exclusiveStartKey = 1;
-  uint32 count = 2;
-}
-
-message GetOwnedEventResult {
-  Error error = 1;
-  string lastEvaluatedKey = 2;
-  repeated Event events = 3;
-}
+//message GetOwnedEventRequest {
+//  string exclusiveStartKey = 1;
+//  uint32 count = 2;
+//}
+//
+//message GetOwnedEventResult {
+//  Error error = 1;
+//  string lastEvaluatedKey = 2;
+//  repeated Event events = 3;
+//}
 
 message Event {
   string eventId = 1;
