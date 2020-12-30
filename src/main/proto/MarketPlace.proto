@@ -44,8 +44,13 @@ message CheckOutRequest {
 message CheckOutResult {
   Error error = 1;
   repeated Order successOrders = 2;
-  map<int32, FailedCheckOutCause> failedItems = 3;
+  repeated FailedItem failedItems = 3;
   repeated Order actionRequiredOrders = 4;
+}
+
+message FailedItem {
+  CheckOutItem item = 1;
+  FailedCheckOutCause cause = 2;
 }
 
 message Order {
@@ -58,10 +63,10 @@ message Order {
   double totalAmount = 7;
   string createdAt = 8;
   string lastUpdatedAt = 9;
-  repeated OrderedItem items = 10;
+  repeated CheckOutItem items = 10;
 }
 
-message OrderedItem {
+message CheckOutItem {
   int32 itemId = 1;
   int32 quantity = 2;
   string itemName = 3;
