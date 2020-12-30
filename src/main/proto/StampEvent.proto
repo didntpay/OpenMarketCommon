@@ -11,6 +11,11 @@ service StampEvent {
   rpc redeem (RedeemRequest) returns (RedeemResult) {}
   rpc getEvent (GetEventRequest) returns (GetEventResult) {}
   rpc getOwnedEvent (GetOwnedEventRequest) returns (GetOwnedEventResult) {}
+  rpc getEventByOwner(GetEventByOwnerRequest) returns (GetOwnedEventResult) {}
+}
+
+message GetEventByOwnerRequest {
+  string ownerID = 1;
 }
 
 message CreateEventRequest {
